@@ -1,0 +1,15 @@
+.DS_Store
+__pycache__/
+*.pyc
+
+# Working area: cloned third-party repos and temporary audio chunks stay local.
+work/repos/
+work/segments/
+work/*.aiff
+work/*_test_*.txt
+work/*_test_*.aiff
+
+# Local secrets/config should never be committed.
+.env
+.env.*
+!.env.example

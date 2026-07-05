@@ -1,0 +1,44 @@
+[
+  {
+    "name": "gitingest",
+    "url": "https://github.com/coderamp-labs/gitingest.git",
+    "role": "Turn a Git repository into prompt-friendly LLM context.",
+    "commit": "4e259a0",
+    "remote": "https://github.com/coderamp-labs/gitingest.git"
+  },
+  {
+    "name": "Audicle",
+    "url": "https://github.com/ttlequals0/Audicle.git",
+    "role": "Turn saved articles and documents into a private podcast feed.",
+    "commit": "f7be982",
+    "remote": "https://github.com/ttlequals0/Audicle.git"
+  },
+  {
+    "name": "ai-podcast-studio",
+    "url": "https://github.com/sourcelabs-nl/ai-podcast-studio.git",
+    "role": "Monitor sources, score relevance, compose scripts, synthesize audio, and publish RSS.",
+    "commit": "b16501c",
+    "remote": "https://github.com/sourcelabs-nl/ai-podcast-studio.git"
+  },
+  {
+    "name": "feishu-pm-kit",
+    "url": "https://github.com/Winfred1024/feishu-pm-kit.git",
+    "role": "Productized Feishu project-manager agent built around Claude Code and Lark CLI.",
+    "commit": "6609f9a",
+    "remote": "https://github.com/Winfred1024/feishu-pm-kit.git"
+  },
+  {
+    "name": "feishu-claude-code",
+    "url": "https://github.com/H2O-YAOZE/feishu-claude-code.git",
+    "role": "Use Feishu as a remote control for Claude Code running on the user's computer.",
+    "commit": "70d35cb",
+    "remote": "https://github.com/H2O-YAOZE/feishu-claude-code.git"
+  },
+  {
+    "name": "Morning-news-podcast",
+    "url": "https://github.com/niuz3199-collab/Morning-news-podcast.git",
+    "role": "Android daily news audio briefing with LLM script generation and TTS.",
+    "commit": "edc03b2",
+    "remote": "https://github.com/niuz3199-collab/Morning-news-podcast.git"
+  }
+]
