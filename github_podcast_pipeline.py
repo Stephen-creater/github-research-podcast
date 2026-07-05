@@ -288,9 +288,39 @@ def tokendance_key(prompt_key: bool) -> str:
     key = os.environ.get("TOKENDANCE_API_KEY", "").strip()
     if key:
         return key
+    keychain_key = read_tokendance_key_from_keychain()
+    if keychain_key:
+        return keychain_key
     if prompt_key:
         return getpass.getpass("TokenDance key: ").strip()
-    raise SystemExit("Set TOKENDANCE_API_KEY or pass --prompt-key.")
+    raise SystemExit("Set TOKENDANCE_API_KEY, store it in macOS Keychain, or pass --prompt-key.")
+
+
+def read_tokendance_key_from_keychain() -> str | None:
+    """Read TokenDance API key from macOS Keychain when available."""
+    if sys.platform != "darwin" or shutil.which("security") is None:
+        return None
+    try:
+        result = subprocess.run(
+            [
+                "security",
+                "find-generic-password",
+                "-a",
+                "github-podcast",
+                "-s",
+                "tokendance-api-key",
+                "-w",
+            ],
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.DEVNULL,
+            check=False,
+        )
+    except OSError:
+        return None
+    if result.returncode != 0:
+        return None
+    return result.stdout.strip() or None
 
 
 def call_mimo_tts(text: str, speaker: str, key: str, model: str, voice: str | None = None) -> bytes:

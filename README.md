@@ -4,7 +4,9 @@ This workspace turns selected GitHub projects into personalized Chinese audio br
 
 Important format rule: one repository equals one episode. A discovery run may inspect many repositories, but the actual podcast script and audio must focus on exactly one repository.
 
-The current audio path uses TokenDance's OpenAI-compatible MiMo TTS when `TOKENDANCE_API_KEY` is provided. The older zero-cost macOS `say` path remains only as a fallback for workflow testing; its voice quality is not acceptable as a user-facing podcast.
+Daily target: at least 5 completed single-repository episodes per calendar day.
+
+The current audio path uses TokenDance's OpenAI-compatible MiMo TTS when `TOKENDANCE_API_KEY` is provided through the environment or macOS Keychain. The older zero-cost macOS `say` path remains only as a fallback for workflow testing; its voice quality is not acceptable as a user-facing podcast.
 
 ## Current Pipeline
 
@@ -14,7 +16,9 @@ The current audio path uses TokenDance's OpenAI-compatible MiMo TTS when `TOKEND
 4. Summarize that repository's useful parts into `outputs/`.
 5. Write a Chinese podcast script focused on that one repository.
 6. Convert the script into an `.m4a` audio file with TokenDance MiMo TTS and `ffmpeg`.
-7. Commit and push durable artifacts to the private remote repository.
+7. Verify that each audio file is 10-40 minutes and decodes successfully.
+8. Maintain a daily index under `outputs/`.
+9. Commit and push durable artifacts to the private remote repository.
 
 ## Selected Repos
 
