@@ -3,7 +3,7 @@
 Created in Codex app:
 
 - Name: Personal GitHub podcast radar
-- Frequency: daily
+- Frequency: every 6 hours, filling the current day to at least 5 completed episodes
 - Workspace: `/Users/a1-6/Desktop/GitHub播客`
 - Behavior:
   - Pull latest `origin/main` before work.
