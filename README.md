@@ -2,7 +2,7 @@
 
 This workspace turns selected GitHub projects into a personalized Chinese audio briefing.
 
-The first version deliberately uses zero-added-cost local macOS TTS, so the whole loop can run without ElevenLabs, OpenAI TTS, or another paid voice API. The tradeoff is voice quality: it is good enough to validate the workflow, not final broadcast quality.
+The current audio path uses TokenDance's OpenAI-compatible MiMo TTS when `TOKENDANCE_API_KEY` is provided. The older zero-cost macOS `say` path remains only as a fallback for workflow testing; its voice quality is not acceptable as a user-facing podcast.
 
 ## Current Pipeline
 
@@ -10,7 +10,7 @@ The first version deliberately uses zero-added-cost local macOS TTS, so the whol
 2. Clone them into `work/repos/` for local inspection.
 3. Summarize the useful parts into `outputs/`.
 4. Write a Chinese podcast script.
-5. Convert the script into an `.m4a` audio file with macOS `say` and `ffmpeg`.
+5. Convert the script into an `.m4a` audio file with TokenDance MiMo TTS and `ffmpeg`.
 6. Commit and push durable artifacts to the private remote repository.
 
 ## Selected Repos
@@ -25,16 +25,25 @@ Generate or refresh repo notes:
 python3 github_podcast_pipeline.py brief
 ```
 
-Generate audio from a dialogue script:
+Generate production audio from a dialogue script:
 
 ```bash
-python3 github_podcast_pipeline.py audio \
+export TOKENDANCE_API_KEY=...
+python3 github_podcast_pipeline.py audio-mimo \
   --script outputs/2026-07-05_github_personal_podcast_script.md \
   --output outputs/2026-07-05_github_personal_podcast.m4a
 ```
 
-The script only uses Python standard library, macOS `say`, and `ffmpeg`.
+For a throwaway local workflow test only:
+
+```bash
+python3 github_podcast_pipeline.py audio \
+  --script outputs/2026-07-05_github_personal_podcast_script.md \
+  --output work/local_say_test.m4a
+```
+
+Do not use the local `say` output as a final listening artifact.
 
 ## Storage Rule
 
-User-facing scripts, notes, manifests, and audio outputs are committed and pushed. Cloned third-party repositories and temporary synthesis chunks are ignored.
+User-facing scripts, notes, manifests, and audio outputs are committed and pushed. Cloned third-party repositories, temporary synthesis chunks, and API keys are ignored.

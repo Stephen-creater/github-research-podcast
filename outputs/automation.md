@@ -10,7 +10,7 @@ Created in Codex app:
   - Search GitHub for high-fit repositories around Codex/coding agents, Feishu/Lark automation, knowledge management, RSS/news radar, repository ingestion, TTS/podcast generation, browser/computer-use automation, and AI FDE/productization.
   - Keep third-party repository clones under `work/repos/` only.
   - Update `outputs/selected_repos.*`.
-  - Generate a new Chinese 10-40 minute podcast script and local-TTS `.m4a` only when there is materially new high-fit content.
+  - Generate a new Chinese 10-40 minute podcast script and MiMo TTS `.m4a` only when there is materially new high-fit content and `TOKENDANCE_API_KEY` is available.
   - Validate audio duration and decoding.
   - Commit and push durable changes to `origin/main`.
-  - Avoid paid TTS/LLM APIs unless explicitly configured for this workflow.
+  - Avoid paid TTS/LLM APIs unless explicitly configured for this workflow. Never commit API keys.

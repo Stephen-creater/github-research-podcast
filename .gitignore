@@ -8,6 +8,7 @@ work/segments/
 work/*.aiff
 work/*_test_*.txt
 work/*_test_*.aiff
+outputs/tts_probe/
 
 # Local secrets/config should never be committed.
 .env

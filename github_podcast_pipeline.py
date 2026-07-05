@@ -9,6 +9,8 @@ macOS `say` plus `ffmpeg`.
 from __future__ import annotations
 
 import argparse
+import base64
+import getpass
 import json
 import os
 import re
@@ -16,6 +18,9 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import time
+import urllib.error
+import urllib.request
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -64,6 +69,21 @@ VOICE_MAP = {
     "分析员": "Reed (Chinese (China mainland))",
     "旁白": "Tingting",
 }
+
+
+MIMO_VOICE_MAP = {
+    "主持人": "白桦",
+    "分析员": "茉莉",
+    "旁白": "白桦",
+}
+
+MIMO_STYLE_MAP = {
+    "主持人": "中文播客男主持，声音自然、有真人感，语速中等，像在认真解释一个技术项目。不要机械播报，不要夸张表演。",
+    "分析员": "中文播客女分析员，声音自然、清晰、克制，有思考感，像在做项目复盘。不要机械播报，不要广告腔。",
+    "旁白": "中文播客旁白，声音自然、平稳、可信，语速中等偏慢。",
+}
+
+TOKENDANCE_CHAT_COMPLETIONS_URL = "https://tokendance.space/gateway/v1/chat/completions"
 
 
 @dataclass
@@ -264,6 +284,128 @@ def synthesize_audio(script_path: Path, output_path: Path, rate: int) -> None:
         os.replace(tmp_m4a, output_path)
 
 
+def tokendance_key(prompt_key: bool) -> str:
+    key = os.environ.get("TOKENDANCE_API_KEY", "").strip()
+    if key:
+        return key
+    if prompt_key:
+        return getpass.getpass("TokenDance key: ").strip()
+    raise SystemExit("Set TOKENDANCE_API_KEY or pass --prompt-key.")
+
+
+def call_mimo_tts(text: str, speaker: str, key: str, model: str, voice: str | None = None) -> bytes:
+    selected_voice = voice or MIMO_VOICE_MAP.get(speaker, "白桦")
+    style = MIMO_STYLE_MAP.get(speaker, MIMO_STYLE_MAP["旁白"])
+    body = {
+        "model": model,
+        "messages": [
+            {"role": "user", "content": style},
+            {"role": "assistant", "content": text},
+        ],
+        "audio": {
+            "format": "wav",
+            "voice": selected_voice,
+        },
+    }
+    payload = json.dumps(body, ensure_ascii=False).encode("utf-8")
+    req = urllib.request.Request(
+        TOKENDANCE_CHAT_COMPLETIONS_URL,
+        data=payload,
+        headers={
+            "Authorization": f"Bearer {key}",
+            "Content-Type": "application/json",
+        },
+        method="POST",
+    )
+    last_error = ""
+    for attempt in range(1, 4):
+        try:
+            with urllib.request.urlopen(req, timeout=180) as response:
+                raw = response.read()
+            data = json.loads(raw)
+            audio = data["choices"][0]["message"].get("audio") or {}
+            audio_data = audio.get("data")
+            if not audio_data:
+                raise RuntimeError(f"No audio data in response: {json.dumps(data, ensure_ascii=False)[:500]}")
+            return base64.b64decode(audio_data)
+        except urllib.error.HTTPError as error:
+            detail = error.read().decode("utf-8", errors="replace")[:500]
+            last_error = f"HTTP {error.code}: {detail}"
+        except Exception as error:  # noqa: BLE001 - surface provider failures with context
+            last_error = f"{type(error).__name__}: {error}"
+        if attempt < 3:
+            time.sleep(2 * attempt)
+    raise RuntimeError(f"MiMo TTS failed for {speaker}: {last_error}")
+
+
+def synthesize_mimo_audio(
+    script_path: Path,
+    output_path: Path,
+    key: str,
+    model: str,
+    host_voice: str | None,
+    analyst_voice: str | None,
+) -> None:
+    ensure_tools("ffmpeg")
+    turns = parse_dialogue(script_path)
+    if not turns:
+        raise SystemExit(f"No dialogue turns found in {script_path}")
+
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix="mimo_podcast_segments_") as tmp:
+        tmp_path = Path(tmp)
+        concat_file = tmp_path / "concat.txt"
+        concat_lines = []
+        for idx, turn in enumerate(turns, start=1):
+            voice = None
+            if turn.speaker == "主持人":
+                voice = host_voice
+            elif turn.speaker == "分析员":
+                voice = analyst_voice
+            wav = tmp_path / f"{idx:03d}_{turn.speaker}.wav"
+            normalized = tmp_path / f"{idx:03d}_{turn.speaker}_norm.wav"
+            print(f"Synthesizing {idx}/{len(turns)} {turn.speaker}", flush=True)
+            wav.write_bytes(call_mimo_tts(turn.text, turn.speaker, key, model, voice=voice))
+            run(
+                [
+                    "ffmpeg",
+                    "-y",
+                    "-v",
+                    "error",
+                    "-i",
+                    str(wav),
+                    "-af",
+                    "loudnorm=I=-18:TP=-2:LRA=11",
+                    str(normalized),
+                ]
+            )
+            concat_lines.append(f"file '{normalized.as_posix()}'")
+        concat_file.write_text("\n".join(concat_lines) + "\n", encoding="utf-8")
+        tmp_m4a = output_path.with_suffix(".tmp.m4a")
+        run(
+            [
+                "ffmpeg",
+                "-y",
+                "-v",
+                "error",
+                "-f",
+                "concat",
+                "-safe",
+                "0",
+                "-i",
+                str(concat_file),
+                "-c:a",
+                "aac",
+                "-b:a",
+                "128k",
+                "-movflags",
+                "+faststart",
+                str(tmp_m4a),
+            ]
+        )
+        os.replace(tmp_m4a, output_path)
+
+
 def duration_seconds(path: Path) -> float:
     ensure_tools("ffprobe")
     out = run(
@@ -292,12 +434,32 @@ def main() -> None:
     audio.add_argument("--output", type=Path, required=True)
     audio.add_argument("--rate", type=int, default=162)
 
+    mimo = sub.add_parser("audio-mimo")
+    mimo.add_argument("--script", type=Path, required=True)
+    mimo.add_argument("--output", type=Path, required=True)
+    mimo.add_argument("--model", default="mimo-v2.5-tts")
+    mimo.add_argument("--host-voice", default="白桦")
+    mimo.add_argument("--analyst-voice", default="茉莉")
+    mimo.add_argument("--prompt-key", action="store_true")
+
     args = parser.parse_args()
     if args.command == "brief":
         ensure_tools("git")
         write_brief()
     elif args.command == "audio":
         synthesize_audio(args.script, args.output, args.rate)
+        seconds = duration_seconds(args.output)
+        print(f"Wrote {args.output} ({seconds / 60:.1f} min)")
+    elif args.command == "audio-mimo":
+        key = tokendance_key(args.prompt_key)
+        synthesize_mimo_audio(
+            args.script,
+            args.output,
+            key,
+            args.model,
+            args.host_voice,
+            args.analyst_voice,
+        )
         seconds = duration_seconds(args.output)
         print(f"Wrote {args.output} ({seconds / 60:.1f} min)")
 
