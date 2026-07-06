@@ -40,5 +40,33 @@
     "role": "Android daily news audio briefing with LLM script generation and TTS.",
     "commit": "edc03b2",
     "remote": "https://github.com/niuz3199-collab/Morning-news-podcast.git"
+  },
+  {
+    "name": "repomix",
+    "url": "https://github.com/yamadashy/repomix.git",
+    "role": "Pack repositories into AI-friendly context for script-quality repo analysis.",
+    "commit": "d8d3f65",
+    "remote": "https://github.com/yamadashy/repomix.git"
+  },
+  {
+    "name": "browser-use",
+    "url": "https://github.com/browser-use/browser-use.git",
+    "role": "Browser automation layer for coding agents, GitHub research, and Feishu workflows.",
+    "commit": "18484f2",
+    "remote": "https://github.com/browser-use/browser-use.git"
+  },
+  {
+    "name": "playwright-mcp",
+    "url": "https://github.com/microsoft/playwright-mcp.git",
+    "role": "MCP browser automation server for structured web interaction by agents.",
+    "commit": "36ec986",
+    "remote": "https://github.com/microsoft/playwright-mcp.git"
+  },
+  {
+    "name": "RSSHub",
+    "url": "https://github.com/DIYgod/RSSHub.git",
+    "role": "RSS route infrastructure for a durable personal information radar.",
+    "commit": "f8d0a14",
+    "remote": "https://github.com/DIYgod/RSSHub.git"
   }
 ]

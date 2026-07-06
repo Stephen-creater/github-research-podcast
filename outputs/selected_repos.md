@@ -2,6 +2,18 @@
 
 These are the current repos selected for the personalized GitHub-to-podcast loop.
 
+## 2026-07-06 production picks
+
+These repositories filled the 2026-07-06 quota as single-repository episodes:
+
+| Repository | Local commit | Fit role |
+| --- | --- | --- |
+| `niuz3199-collab/Morning-news-podcast` | `edc03b2` | Android news-to-audio product reference for daily briefing, MiMo TTS, logging, and mobile listening. |
+| `yamadashy/repomix` | `d8d3f65` | Repository-to-AI-context packer for deeper single-repo scripts and token/security gates. |
+| `browser-use/browser-use` | `18484f2` | Browser execution layer for coding agents, GitHub evidence collection, and Feishu workflow automation. |
+| `microsoft/playwright-mcp` | `36ec986` | MCP browser automation server for structured web interaction and complex page-state workflows. |
+| `DIYgod/RSSHub` | `f8d0a14` | RSS route infrastructure reference for a durable personal repo/news radar input layer. |
+
 ## gitingest
 
 - Remote: https://github.com/coderamp-labs/gitingest.git
