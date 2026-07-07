@@ -2,6 +2,18 @@
 
 These are the current repos selected for the personalized GitHub-to-podcast loop.
 
+## 2026-07-07 production picks
+
+These repositories filled the 2026-07-07 quota as single-repository episodes:
+
+| Repository | Local commit | Fit role |
+| --- | --- | --- |
+| `openai/codex` | `cca16a1` | OpenAI coding-agent architecture reference for CLI, desktop app, threads, tools, sandboxing, skills, plugins, and MCP. |
+| `anthropics/claude-code` | `7930e1c` | Claude Code plugin/workflow reference for commands, agents, skills, hooks, and repeatable AI work systems. |
+| `anthropics/claude-code-action` | `f87768c` | GitHub Actions bridge for Claude Code automation, PR/issue triggers, permissions, structured outputs, and runner safety. |
+| `larksuite/cli` | `f0b6f35` | Official Feishu/Lark CLI for agent-native Docs, Daily, Base, Calendar, Tasks, Mail, and workflow automation. |
+| `larksuite/lark-openapi-mcp` | `2192035` | Official Feishu/Lark MCP bridge for exposing OpenAPI tools to Claude, Codex, Cursor, and other agents. |
+
 ## 2026-07-06 production picks
 
 These repositories filled the 2026-07-06 quota as single-repository episodes:

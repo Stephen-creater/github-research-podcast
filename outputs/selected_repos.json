@@ -68,5 +68,40 @@
     "role": "RSS route infrastructure for a durable personal information radar.",
     "commit": "f8d0a14",
     "remote": "https://github.com/DIYgod/RSSHub.git"
+  },
+  {
+    "name": "codex",
+    "url": "https://github.com/openai/codex.git",
+    "role": "OpenAI coding-agent architecture reference for CLI, desktop app, threads, tools, sandboxing, skills, plugins, and MCP.",
+    "commit": "cca16a1",
+    "remote": "https://github.com/openai/codex.git"
+  },
+  {
+    "name": "claude-code",
+    "url": "https://github.com/anthropics/claude-code.git",
+    "role": "Claude Code plugin/workflow reference for commands, agents, skills, hooks, and repeatable AI work systems.",
+    "commit": "7930e1c",
+    "remote": "https://github.com/anthropics/claude-code.git"
+  },
+  {
+    "name": "claude-code-action",
+    "url": "https://github.com/anthropics/claude-code-action.git",
+    "role": "GitHub Actions bridge for Claude Code automation, PR/issue triggers, permissions, structured outputs, and runner safety.",
+    "commit": "f87768c",
+    "remote": "https://github.com/anthropics/claude-code-action.git"
+  },
+  {
+    "name": "lark-cli",
+    "url": "https://github.com/larksuite/cli.git",
+    "role": "Official Feishu/Lark CLI for agent-native Docs, Daily, Base, Calendar, Tasks, Mail, and workflow automation.",
+    "commit": "f0b6f35",
+    "remote": "https://github.com/larksuite/cli.git"
+  },
+  {
+    "name": "lark-openapi-mcp",
+    "url": "https://github.com/larksuite/lark-openapi-mcp.git",
+    "role": "Official Feishu/Lark MCP bridge for exposing OpenAPI tools to Claude, Codex, Cursor, and other agents.",
+    "commit": "2192035",
+    "remote": "https://github.com/larksuite/lark-openapi-mcp.git"
   }
 ]
