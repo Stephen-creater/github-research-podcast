@@ -2,6 +2,18 @@
 
 These are the current repos selected for the personalized GitHub-to-podcast loop.
 
+## 2026-07-08 production picks
+
+These repositories filled the 2026-07-08 quota as single-repository episodes:
+
+| Repository | Local commit | Fit role |
+| --- | --- | --- |
+| `OpenHands/OpenHands` | `ede3d75` | Self-hosted developer control center for coding agents, automations, multi-backend execution, and agent productization. |
+| `microsoft/markitdown` | `e144e0a` | Document-to-Markdown ingestion layer for LLM workflows across Office, PDF, HTML, audio, images, ZIPs, and MCP tools. |
+| `getzep/graphiti` | `dfb742d` | Temporal context graph and agent memory engine for evolving Feishu/Daily facts, provenance, and current-state queries. |
+| `firecrawl/firecrawl` | `cb3d902` | Web search/scrape/interact ingestion service for turning messy web pages into LLM-ready Markdown and structured data. |
+| `n8n-io/n8n` | `dc057206` | Workflow automation platform for AI agents, business integrations, human approval, observability, and production delivery. |
+
 ## 2026-07-07 production picks
 
 These repositories filled the 2026-07-07 quota as single-repository episodes:

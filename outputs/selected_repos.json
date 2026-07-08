@@ -103,5 +103,40 @@
     "role": "Official Feishu/Lark MCP bridge for exposing OpenAPI tools to Claude, Codex, Cursor, and other agents.",
     "commit": "2192035",
     "remote": "https://github.com/larksuite/lark-openapi-mcp.git"
+  },
+  {
+    "name": "OpenHands",
+    "url": "https://github.com/OpenHands/OpenHands.git",
+    "role": "Self-hosted developer control center for coding agents, automations, multi-backend execution, and agent productization.",
+    "commit": "ede3d75",
+    "remote": "https://github.com/OpenHands/OpenHands.git"
+  },
+  {
+    "name": "markitdown",
+    "url": "https://github.com/microsoft/markitdown.git",
+    "role": "Document-to-Markdown ingestion layer for LLM workflows across Office, PDF, HTML, audio, images, ZIPs, and MCP tools.",
+    "commit": "e144e0a",
+    "remote": "https://github.com/microsoft/markitdown.git"
+  },
+  {
+    "name": "graphiti",
+    "url": "https://github.com/getzep/graphiti.git",
+    "role": "Temporal context graph and agent memory engine for evolving Feishu/Daily facts, provenance, and current-state queries.",
+    "commit": "dfb742d",
+    "remote": "https://github.com/getzep/graphiti.git"
+  },
+  {
+    "name": "firecrawl",
+    "url": "https://github.com/firecrawl/firecrawl.git",
+    "role": "Web search/scrape/interact ingestion service for turning messy web pages into LLM-ready Markdown and structured data.",
+    "commit": "cb3d902",
+    "remote": "https://github.com/firecrawl/firecrawl.git"
+  },
+  {
+    "name": "n8n",
+    "url": "https://github.com/n8n-io/n8n.git",
+    "role": "Workflow automation platform for AI agents, business integrations, human approval, observability, and production delivery.",
+    "commit": "dc057206",
+    "remote": "https://github.com/n8n-io/n8n.git"
   }
 ]
