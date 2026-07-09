@@ -2,6 +2,18 @@
 
 These are the current repos selected for the personalized GitHub-to-podcast loop.
 
+## 2026-07-09 production picks
+
+These repositories filled the 2026-07-09 quota as single-repository episodes:
+
+| Repository | Local commit | Fit role |
+| --- | --- | --- |
+| `unclecode/crawl4ai` | `987541e` | Open-source LLM-friendly web crawler and scraper for turning public docs, websites, and dynamic pages into Markdown and structured context. |
+| `mem0ai/mem0` | `b26469e` | Agent memory layer with ADD-only fact extraction, entity linking, hybrid retrieval, temporal reasoning, SDKs, CLI, self-hosting, and agent skills. |
+| `supermemoryai/supermemory` | `97888ce` | Cross-client AI memory and context platform for user profiles, hybrid search, connectors, MCP tools, browser extension, and personal/company brain workflows. |
+| `browserbase/stagehand` | `be0a2f6` | AI browser automation framework that blends deterministic code, natural-language actions, schema extraction, caching, self-healing, logs, and evals. |
+| `ComposioHQ/composio` | `914bccf` | Agent tool-integration SDK and MCP direction for safely connecting OpenAI, Anthropic, LangChain, LangGraph, LlamaIndex, CrewAI, AutoGen, and real apps. |
+
 ## 2026-07-08 production picks
 
 These repositories filled the 2026-07-08 quota as single-repository episodes:

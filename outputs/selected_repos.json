@@ -138,5 +138,40 @@
     "role": "Workflow automation platform for AI agents, business integrations, human approval, observability, and production delivery.",
     "commit": "dc057206",
     "remote": "https://github.com/n8n-io/n8n.git"
+  },
+  {
+    "name": "crawl4ai",
+    "url": "https://github.com/unclecode/crawl4ai.git",
+    "role": "Open-source LLM-friendly web crawler and scraper for turning public docs, websites, and dynamic pages into Markdown and structured context.",
+    "commit": "987541e",
+    "remote": "https://github.com/unclecode/crawl4ai.git"
+  },
+  {
+    "name": "mem0",
+    "url": "https://github.com/mem0ai/mem0.git",
+    "role": "Agent memory layer with ADD-only fact extraction, entity linking, hybrid retrieval, temporal reasoning, SDKs, CLI, self-hosting, and agent skills.",
+    "commit": "b26469e",
+    "remote": "https://github.com/mem0ai/mem0.git"
+  },
+  {
+    "name": "supermemory",
+    "url": "https://github.com/supermemoryai/supermemory.git",
+    "role": "Cross-client AI memory and context platform for user profiles, hybrid search, connectors, MCP tools, browser extension, and personal/company brain workflows.",
+    "commit": "97888ce",
+    "remote": "https://github.com/supermemoryai/supermemory.git"
+  },
+  {
+    "name": "stagehand",
+    "url": "https://github.com/browserbase/stagehand.git",
+    "role": "AI browser automation framework that blends deterministic code, natural-language actions, schema extraction, caching, self-healing, logs, and evals.",
+    "commit": "be0a2f6",
+    "remote": "https://github.com/browserbase/stagehand.git"
+  },
+  {
+    "name": "composio",
+    "url": "https://github.com/ComposioHQ/composio.git",
+    "role": "Agent tool-integration SDK and MCP direction for safely connecting OpenAI, Anthropic, LangChain, LangGraph, LlamaIndex, CrewAI, AutoGen, and real apps.",
+    "commit": "914bccf",
+    "remote": "https://github.com/ComposioHQ/composio.git"
   }
 ]
