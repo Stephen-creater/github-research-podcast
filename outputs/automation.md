@@ -1,21 +1,20 @@
-# Automation
+# Daily GitHub Research Automation
 
-Created in Codex app:
+Maintained in the Codex app:
 
-- Name: Personal GitHub podcast radar
-- Frequency: every 6 hours, filling the current day to at least 5 completed episodes
+- Name: Daily GitHub research
+- Frequency: every 6 hours, creating at most one completed report per calendar day
 - Workspace: `/Users/a1-6/Desktop/GitHub播客`
 - Behavior:
   - Pull latest `origin/main` before work.
-  - Search GitHub for high-fit repositories around Codex/coding agents, Feishu/Lark automation, knowledge management, RSS/news radar, repository ingestion, TTS/podcast generation, browser/computer-use automation, and AI FDE/productization.
+  - Exit without changes when today's verified report already exists.
+  - Search for high-fit repositories around Codex/coding agents, Feishu/Lark automation, AI video, knowledge management, browser/computer-use automation, and AI FDE/productization.
   - Keep third-party repository clones under `work/repos/` only.
-  - Update `outputs/selected_repos.*`.
-  - Generate at least 5 completed podcast episodes per calendar day.
-  - Pick exactly one repository per episode. Do not make a multi-repository roundup episode as a final output.
-  - Generate Chinese 10-40 minute podcast scripts and MiMo TTS `.m4a` files focused on one repository each when `TOKENDANCE_API_KEY` is available through the environment or macOS Keychain.
-  - Each episode should directly explain the repository: problem, usage, code architecture, key design choices, limitations, and concrete fit with the user's projects.
-  - Maintain a daily index under `outputs/` with repo, script, audio, duration, and status for every episode.
-  - Validate audio duration and decoding.
-  - If a script exists but audio failed, retry audio only. If audio is valid, do not regenerate it unless explicitly requested.
+  - Write exactly one evidence-backed Chinese report under `outputs/daily-research/`.
+  - Explain the problem, usage, architecture, reusable ideas, limitations, risks, and fit with the user's projects.
+  - Maintain `outputs/daily-research/index.md`.
+  - Record useful external fixes as review candidates; never send unsolicited PRs automatically.
+  - Reject duplicates, generic summaries, fake findings, and timestamp-only changes.
+  - Verify links, paths, secrets, oversized files, and Git author attribution.
   - Commit and push durable changes to `origin/main`.
-  - Avoid paid TTS/LLM APIs unless explicitly configured for this workflow. Never commit API keys.
+  - Never commit API keys or cloned third-party source.

@@ -1,26 +1,33 @@
-# Personal GitHub Podcast Lab
+# Personal GitHub Research Lab
 
-This workspace turns selected GitHub projects into personalized Chinese audio briefings.
+This workspace turns selected GitHub projects into durable Chinese research notes.
+The earlier single-repository podcast episodes remain as an archive and can still
+be generated on demand.
 
-Important format rule: one repository equals one episode. A discovery run may inspect many repositories, but the actual podcast script and audio must focus on exactly one repository.
+Important format rule: one repository equals one daily report. A discovery run may
+inspect several candidates, but the maintained output studies exactly one repository.
 
-Daily target: at least 5 completed single-repository episodes per calendar day.
+Daily target: one evidence-backed repository report under `outputs/daily-research/`.
+No empty commits or timestamp-only changes are allowed.
 
-The current audio path uses TokenDance's OpenAI-compatible MiMo TTS when `TOKENDANCE_API_KEY` is provided through the environment or macOS Keychain. The older zero-cost macOS `say` path remains only as a fallback for workflow testing; its voice quality is not acceptable as a user-facing podcast.
+The optional audio path uses TokenDance's OpenAI-compatible MiMo TTS when
+`TOKENDANCE_API_KEY` is provided through the environment or macOS Keychain.
 
 ## Current Pipeline
 
-1. Select GitHub repositories that match the user's active workflows.
-2. Clone them into `work/repos/` for local inspection.
-3. Pick one repository for the episode.
-4. Summarize that repository's useful parts into `outputs/`.
-5. Write a Chinese podcast script focused on that one repository.
-6. Convert the script into an `.m4a` audio file with TokenDance MiMo TTS and `ffmpeg`.
-7. Verify that each audio file is 10-40 minutes and decodes successfully.
-8. Maintain a daily index under `outputs/`.
-9. Commit and push durable artifacts to the private remote repository.
+1. Select one repository that matches the user's active workflows and has not been covered.
+2. Clone it into `work/repos/` when code inspection is needed.
+3. Verify claims from the repository, documentation, releases, issues, and code.
+4. Write a plain-Chinese report under `outputs/daily-research/`.
+5. Maintain `outputs/daily-research/index.md`.
+6. Check links, duplication, secrets, oversized files, and Git attribution.
+7. Commit and push only meaningful durable artifacts to the private remote repository.
 
-## Selected Repos
+## Daily Research
+
+See `outputs/daily-research/index.md`.
+
+## Podcast Archive
 
 See `outputs/selected_repos.md`.
 
