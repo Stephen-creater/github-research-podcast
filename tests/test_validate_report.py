@@ -39,6 +39,10 @@ VALID_REPORT = """# owner/repo: useful project
 
 说明可复用设计。
 
+## 对近期项目的直接帮助
+
+它能解决当前项目的验证问题，可复用检查器，最小试验是先检查一个工作流；不应复制自动外部提交部分。
+
 ## 局限和风险
 
 说明风险和未知项。
@@ -82,6 +86,17 @@ class ValidateReportTests(unittest.TestCase):
             report.write_text(VALID_REPORT + "\nghp_" + "A" * 36, encoding="utf-8")
             errors = VALIDATOR.validate(report)
             self.assertTrue(any("possible secret" in error for error in errors))
+
+    def test_missing_recent_project_help_fails(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            report = Path(tmp) / "2026-07-15_owner_repo.md"
+            text = VALID_REPORT.replace(
+                "## 对近期项目的直接帮助\n\n它能解决当前项目的验证问题，可复用检查器，最小试验是先检查一个工作流；不应复制自动外部提交部分。\n\n",
+                "",
+            )
+            report.write_text(text, encoding="utf-8")
+            errors = VALIDATOR.validate(report)
+            self.assertTrue(any("recent project help" in error for error in errors))
 
 
 if __name__ == "__main__":

@@ -87,6 +87,9 @@ class DialogueTurn:
     text: str
 
 
+PROJECT_FIT_TERMS = ("近期项目", "最近项目", "当前项目", "你的项目", "工作流", "落地")
+
+
 def run(cmd: list[str], cwd: Path | None = None) -> str:
     result = subprocess.run(
         cmd,
@@ -219,6 +222,15 @@ def parse_dialogue(script_path: Path) -> list[DialogueTurn]:
     if current_speaker and current_lines:
         turns.append(DialogueTurn(current_speaker, "\n".join(current_lines).strip()))
     return turns
+
+
+def validate_dialogue(turns: list[DialogueTurn]) -> None:
+    speakers = {turn.speaker for turn in turns}
+    if len(turns) < 2 or not {"主持人", "分析员"}.issubset(speakers):
+        raise SystemExit("Script must contain at least one [主持人] and one [分析员] turn.")
+    text = "\n".join(turn.text for turn in turns)
+    if not any(term in text for term in PROJECT_FIT_TERMS):
+        raise SystemExit("Script must explain how the repository helps a recent project or workflow.")
 
 
 def synthesize_audio(script_path: Path, output_path: Path, rate: int) -> None:
@@ -455,9 +467,7 @@ def verify_episode(script_path: Path, audio_path: Path) -> float:
     if not audio_path.is_file():
         raise SystemExit(f"Missing audio: {audio_path}")
     turns = parse_dialogue(script_path)
-    speakers = {turn.speaker for turn in turns}
-    if len(turns) < 2 or not {"主持人", "分析员"}.issubset(speakers):
-        raise SystemExit("Script must contain at least one [主持人] and one [分析员] turn.")
+    validate_dialogue(turns)
     seconds = duration_seconds(audio_path)
     if seconds <= 0:
         raise SystemExit(f"Invalid audio duration: {seconds}")

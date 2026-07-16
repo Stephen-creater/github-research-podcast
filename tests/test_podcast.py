@@ -22,11 +22,20 @@ class PodcastTests(unittest.TestCase):
             script = Path(tmp) / "episode.md"
             script.write_text(
                 "# Episode\n\n[主持人]\n这个仓库解决什么问题？\n\n"
-                "[分析员]\n它把研究结果转换成播客。\n",
+                "[分析员]\n它把研究结果转换成播客，能直接帮助最近项目的知识沉淀。\n",
                 encoding="utf-8",
             )
             turns = PODCAST.parse_dialogue(script)
             self.assertEqual(["主持人", "分析员"], [turn.speaker for turn in turns])
+            PODCAST.validate_dialogue(turns)
+
+    def test_dialogue_requires_recent_project_help(self) -> None:
+        turns = [
+            PODCAST.DialogueTurn("主持人", "这个仓库解决什么问题？"),
+            PODCAST.DialogueTurn("分析员", "它可以生成一份研究报告。"),
+        ]
+        with self.assertRaises(SystemExit):
+            PODCAST.validate_dialogue(turns)
 
     def test_ignore_markdown_outside_dialogue(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

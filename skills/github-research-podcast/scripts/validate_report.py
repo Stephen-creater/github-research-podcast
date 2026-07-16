@@ -25,6 +25,7 @@ REQUIRED_SECTIONS = {
     "usage": ("安装和使用", "怎么使用", "setup", "minimal use"),
     "architecture": ("架构", "architecture"),
     "reusable ideas": ("值得借鉴", "可复用", "reusable"),
+    "recent project help": ("近期项目", "直接帮助", "对我们有什么", "project help", "recent projects"),
     "risks": ("局限", "风险", "limitations", "risks"),
     "recommendation": ("最终建议", "建议", "recommendation"),
     "sources": ("主要来源", "一手来源", "primary sources"),
