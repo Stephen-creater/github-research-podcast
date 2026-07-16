@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Install the bundled github-repo-research Skill into an Agent skill root."""
+"""Install the bundled github-research-podcast Skill into an Agent skill root."""
 
 from __future__ import annotations
 
@@ -11,14 +11,12 @@ from pathlib import Path
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-SOURCE = REPO_ROOT / "skills" / "github-repo-research"
+SOURCE = REPO_ROOT / "skills" / "github-research-podcast"
 
 
 def directories_match(left: Path, right: Path) -> bool:
     comparison = filecmp.dircmp(left, right)
     if comparison.left_only or comparison.right_only or comparison.funny_files:
-        return False
-    if any(not same for same in comparison.same_files):
         return False
     if comparison.diff_files:
         return False

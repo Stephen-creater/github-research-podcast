@@ -7,7 +7,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-VALIDATOR_PATH = ROOT / "skills" / "github-repo-research" / "scripts" / "validate_report.py"
+VALIDATOR_PATH = ROOT / "skills" / "github-research-podcast" / "scripts" / "validate_report.py"
 SPEC = importlib.util.spec_from_file_location("validate_report", VALIDATOR_PATH)
 assert SPEC and SPEC.loader
 VALIDATOR = importlib.util.module_from_spec(SPEC)
