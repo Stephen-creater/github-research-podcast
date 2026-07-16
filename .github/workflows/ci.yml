@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compile Python entrypoints
+        run: |
+          python -m py_compile \
+            github_podcast_pipeline.py \
+            skills/github-repo-research/scripts/validate_report.py \
+            scripts/install_skill.py
+      - name: Run unit tests
+        run: python -m unittest discover -s tests -v
+      - name: Validate maintained research report
+        run: |
+          python skills/github-repo-research/scripts/validate_report.py \
+            outputs/daily-research/2026-07-15_xiaolai_nlpm.md \
+            --index outputs/daily-research/index.md

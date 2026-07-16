@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
-"""Small local pipeline for GitHub-to-podcast experiments.
+"""Legacy helpers for repository briefs and optional Chinese podcast audio.
 
-This intentionally avoids paid APIs. It can clone/update selected repos, produce
-lightweight repo briefs, and synthesize a marked-up Chinese dialogue script with
-macOS `say` plus `ffmpeg`.
+The maintained daily-research workflow now lives in the github-repo-research
+Skill. This module preserves the original deterministic brief and audio tools.
 """
 
 from __future__ import annotations

@@ -2,12 +2,9 @@
 __pycache__/
 *.pyc
 
-# Working area: cloned third-party repos and temporary audio chunks stay local.
-work/repos/
-work/segments/
-work/*.aiff
-work/*_test_*.txt
-work/*_test_*.aiff
+# Working area: cloned third-party repos, virtual environments, and temporary
+# audio or validation artifacts stay local.
+work/
 outputs/tts_probe/
 
 # Local secrets/config should never be committed.
