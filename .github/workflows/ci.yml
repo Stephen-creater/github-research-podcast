@@ -30,6 +30,10 @@ jobs:
           python skills/github-research-podcast/scripts/validate_report.py \
             outputs/daily-research/2026-07-15_xiaolai_nlpm.md \
             --index outputs/daily-research/index.md
+      - name: Install audio verification tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes ffmpeg
       - name: Verify preserved podcast episode
         run: |
           python github_podcast_pipeline.py verify \
