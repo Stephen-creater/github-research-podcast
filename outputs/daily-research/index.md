@@ -5,6 +5,7 @@ Codex, Feishu, AI-video, automation, and AI FDE work over raw popularity.
 
 | Date | Repository | Report | Recommendation |
 | --- | --- | --- | --- |
+| 2026-07-21 | `humanlayer/skills` | [Read report](2026-07-21_humanlayer_skills.md) | Study only as a practical control-loop design reference for recurring agent automations; do not install or copy the workflow wholesale until the current skill installer and target runtime are verified. |
 | 2026-07-20 | `openai/plugins` | [Read report](2026-07-20_openai_plugins.md) | Use now as the current Codex plugin packaging and plugin-boundary reference; do not copy the whole marketplace or bypass connector auth. |
 | 2026-07-19 | `google-gemini/gemini-cli` | [Read report](2026-07-19_google-gemini_gemini-cli.md) | Study only as an AI coding harness and MCP safety-boundary reference; do not migrate current workflows. |
 | 2026-07-17 | `openai/openai-agents-python` | [Read report](2026-07-17_openai_openai-agents-python.md) | Use now for a small local orchestration and guardrail pilot; do not migrate the full podcast or Feishu/video workflows yet. |
